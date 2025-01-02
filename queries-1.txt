@@ -1,0 +1,169 @@
+							        create table
+
+1]  create table dept
+  	  ( deptno number(2) primary key,
+  	    Dname  varchar(14) not null,
+  	    Loc  varchar(13));
+ 2]  create table emp
+  	  ( Empno number(4) primary key,
+  	    Ename varchar(10) not null,
+  	    Job varchar(9),
+ 	      Mgr number(4),
+ 	      Hiredate date,
+ 	      Sal number(7,2),
+ 	      Comm number(7,2),
+ 	      Deptno number(2) not null,
+ 	     foreign key (Deptno) references dept(deptno));
+3]  create table SalGrade
+             ( Grade number(2),
+               Losal number(8),
+               Hisal number(8));
+	
+							Insert data
+1]   table name: dept
+	insert into dept values(10,'Accounting','New York');
+        insert into dept values(20,'Reasearch','Dallas');
+        insert into dept values(30,'Sales','Chicago');
+ 	insert into dept values(40,'Operations','Boston');
+2] table name: emp
+	insert into emp values(7369,'SMITH','CLERK',7902,'17-DEC-80',800,00,20);
+	insert into emp values(7499,'ALLEN','SALESMAN',7698,'20-FEB-81',1600,300,30);
+	insert into emp values(7521,'WARD','SALESMAN',7698,'22-FEB-81',1250,500,30);
+	insert into emp values(7566,'JONES','MANAGER',7839,'02-APR-81',2975,00,30);
+insert into emp values(7654,'MARTIN','SALESMAN',7698,'28-SEP-81',1250,1400,30);
+	insert into emp values(7698,'BALKE','MANAGER',7839,'01-MAY-81',2850,00,30);
+	insert into emp values(7782,'CLARK','MANAGER',7839,'09-JUN-81',2450,00,10);
+	insert into emp values(7788,'SCOTT','ANALYST',7566,'19-APR-87',3000,00,20);
+	insert into emp values(7839,'KING','PRESIDENT',00,'17-NOV-81',5000,00,10);
+	insert into emp values(7844,'TURNER','SALESMAN',7698,'08-SEP-81',1500,00,30);
+	 insert into emp values(7876,'ADAMS','CLERK',7788,'23-MAY-87',1100,00,20);
+	 insert into emp values(7900,'JAMES','CLERK',7698,'03-DEC-81',950,00,30);
+	insert into emp values(7902,'FORD','ANALYST',7566,'03-DEC-81',3000,00,20);
+	 insert into emp values(7934,'MILLER','CLERK',7782,'23-JAN-82',1300,00,10);
+3]Table name: SalGrade
+	 insert into SalGrade values(1,700,1200);
+	 insert into SalGrade values(2,1201,1400);
+	 insert into SalGrade values(3,1401,2000);
+	 insert into SalGrade values(4,2001,3000);
+	 insert into SalGrade values(5,3001,9999);
+
+						ASSIGNMENT 1
+	1] BASIC QUERIES
+
+1.	select * from emp;
+2.	desc emp;
+3.	pending
+4.	select empno from emp;
+5.	select ename,job from emp;
+6.	select comm from emp;
+7.	select mgr from emp;
+8.	select deptno from emp;
+9.	select empno,ename,job,mgr from emp;
+10.	select ename,mgr from emp;
+11.	select comm,job from emp;
+12.	select ename,deptno from emp;
+13.	select deptno,ename,sal,job from emp;
+14.	select deptno,Dname from dept;
+15.	select Grade from SalGrade;
+16.	select Losal,Hisal,Grade from SalGrade;
+
+							ASSIGNMENT - 2
+
+1.	 select ename from emp where job='MANAGER';
+2.	 select ename from emp where job='PRESIDENT';
+3.	 select ename from emp where job='MANAGER' or job='CLERK';
+4.	 select ename from emp where job='MANAGER' and deptno=10;
+5.	 select ename from emp where deptno=10;
+6.	 select ename from emp where deptno=10 and job!='MANAGER';
+7.	 select ename from emp where deptno=10 and job='MANAGER' or job='ANALYST';
+8.	 select ename from emp where job!='PRESIDENT' and job!='ANALYST' and job!='SALESMAN';
+9.	select ename from emp where deptno=10 and job='MANAGER' ;
+
+						ASSIGNMENT - 3
+1.	alter table emp rename column ename to priyanka;
+         select priyanka from emp;
+2.	alter table emp rename column sal to salaries;
+3.	 alter table emp rename column job to designation;
+	 alter table emp rename column Priyanka to employee_name;
+4.	  select designation,salaries+100 from emp where designation='MANAGER';
+5.	 select employee_name,salaries+1000,salaries-4500 from emp;
+6.	 select employee_name,salaries+100 as sal from emp where employee_name='SCOTT';
+7.	 select employee_name,salaries+500,salaries-300,salaries/100 from emp;
+8.	 select employee_name,salaries*5/100 as sal from emp;
+9.	 select designation,salaries*8/100 as sal from emp where designation='SALESMAN';	
+10.	select designation,salaries*2 as sal from emp where designation='MANAGER';
+11.	 select employee_name,salaries/30 as daily_wages from emp;
+12.   select salaries*12 as annsal from emp;
+13.
+14.
+15.
+16.	select salaries*12+comm as annual_sal from emp;
+17.	select distinct deptno from emp;
+18.  select distinct deptno,designation from emp;
+19.	select employee_name from emp where comm=0 and designation='MANAGER';
+20.	select distinct designation from emp;
+21.	 select distinct designation from emp;
+
+								ASSIGNMENT-4
+1.	select hiredate from emp order by hiredate desc;
+2.	select hiredate from emp order by hiredate ;
+3.	select designation,deptno from emp where deptno>20;
+4.	select employee_name from emp where comm>salaries;
+5.	select employee_name from emp where comm<salaries;
+6.	select employee_name from emp where salaries between 500 and 1500;
+7.	 
+8.	select employee_name from emp where mgr  between 7788 and 7902 ;
+9.	select employee_name from emp where employee_name like 'S%';
+10.	 select employee_name from emp where employee_name like 'SCOTT';
+11.	
+12.	select employee_name from emp where designation!='MANAGER';
+13.	 select employee_name from emp where designation!='A%';
+14.	 select employee_name from emp where mgr!=0;
+15.	 select employee_name from emp where(designation='MANAGER' or 	designation='CLERK') and deptno=10;
+16.	select employee_name from emp 	where(designation='MANAGER'ordesignation='SALESMAN') and salaries>1500;	
+17.	
+18.
+19.
+20.
+21.
+
+						ASSIGNMENT - 5 
+1.	 select abs(-18) from dual;
+2.	 select abs(30) from dual;
+3.	 select ceil(22.5) from dual;
+4.	select ceil(31.2) from dual;
+5.	 select floor(37.2) from dual;
+6.	 select lower('PRIYANKA') from dual;
+7.	
+8.	select substr (employee_name,0,2) from emp;
+9.	select substr (hiredate,8,4) from emp;
+10.	select soundex(employee_name) from emp;
+11.	select soundex(employee_name) from emp where employee_name='ALLEN';
+12.	 select min(salaries) from emp;
+13.	 select max(salaries) from emp;
+14.	 select length(employee_name) from emp;
+15.	select length(designation) from emp;
+16.	select vsize(employee_name) from emp;
+17.	select chr(2) from dual;
+18.	select rowid,employee_name from emp;
+19.	
+20.
+21.	 select rowid,employee_name from emp;
+22.	select sum(salaries) from emp;
+23.	select Grade from SalGrade;
+24.	select emp.designation,dept.loc from dept full outer  join emp on 	dept.deptno=emp.deptno where loc='New York';
+25.	select emp.employee_name,dept.dname from emp full outer join dept on 	dept.deptno=emp.deptno where dname='Accounting';
+26.
+27.	 select salaries*12 as result from emp;
+28.	select emp.employee_name,dept.dname from emp full outer join dept on       	dept.deptno=emp.deptno where dname='Sales';
+29.	select emp.employee_name,dept.loc from dept full outer  join emp on        	dept.deptno=emp.deptno where loc='New York' and dname='Accounting';
+30.	select emp.employee_name,dept.loc from dept full outer  join emp on        	dept.deptno=emp.deptno where loc='Chicago';
+31.	
+32.
+33.	select employee_name,salaries from emp where salaries>2975;
+34.	 select emp.employee_name,dept.dname from dept full outer  join emp on 	dept.deptno=emp.deptno;
+35.	select deptno from emp union select deptno from dept;
+36.	select deptno from emp intersect select deptno from dept;
+37.	 select deptno from emp minus select deptno from dept;
+38.	select employee_name,min(salaries) from emp group by employee_name;
+39.	select employee_name from emp where designation='MANAGER';	
